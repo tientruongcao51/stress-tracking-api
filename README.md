@@ -34,10 +34,10 @@ also has a feed that shows all stress level tracked by the user with associated 
   User 
 `
 
-| Parameter | Type     | Description        |
-|:----------|:---------|:-------------------|
-| `userID`  | `string` | User ID            |
-| `email`   | `string` | Stress level (0-5) |
+| Parameter | Type     | Description |
+|:----------|:---------|:------------|
+| `userID`  | `string` | User ID     |
+| `email`   | `string` | User email  |
 
 
 `
