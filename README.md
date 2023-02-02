@@ -5,11 +5,25 @@ API to upload it. Every uploaded images should be resized for more suitable to d
 also has a feed that shows all stress level tracked by the user with associated image.
 
 **Task**: Build the API described above. Write unit/e2e tests for each components.
+- [1. Infrastructure](#1-infrastructure)
+  * [AWS Diagrams](#aws-diagrams)
+  * [Jenkins Server](#jenkins-server)
+  * [Database Diagram](#database-diagram)
+- [2. Development](#2-development)
+  * [API Endpoint](#api-endpoint)
+    - [Upload a stress level record](#upload-a-stress-level-record)
+    - [Get all stress level records](#get-all-stress-level-records)
+  * [Repository Folder Structure](#repository-folder-structure)
+    + [Infrastructure Repo](#infrastructure-repo)
+    + [API Stress Tracking Repo](#api-stress-tracking-repo)
+  * [3. Deployment process](#3-deployment-process)
+    + [Jenkins pipeline for Prerequisite resources](#jenkins-pipeline-for-prerequisite-resources)
+    + [Jenkins pipeline for Dockerfile](#jenkins-pipeline-for-dockerfile)
 
 # 1. Infrastructure
 
 ## AWS Diagrams
-![img.png](Image/aws_infras.png)
+![aws_infras.png](Image/aws_infras.png)
 
 ## Jenkins Server
 
@@ -112,6 +126,6 @@ Tracking
 ## 3. Deployment process
 
 ### Jenkins pipeline for Prerequisite resources
-![img.png](Image/prerequisite_resources_cicd.png)
+![prerequisite_resources_cicd.png](Image/prerequisite_resources_cicd.png)
 ### Jenkins pipeline for Dockerfile
-![img.png](Image/jenkins_service_cicd.png)
+![jenkins_service_cicd.png](Image/jenkins_service_cicd.png)
