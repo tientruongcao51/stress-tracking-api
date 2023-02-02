@@ -1,13 +1,24 @@
 # stress-tracking-api
+The goal of this project is to assess development skills suitable for a backend engineer position. It tests knowledge and proficiency with software design, unit testing and web technologies like HTTP and REST.
 
+```
+Project Name: OOCA Stress Tracking API
+Project Goal: Create a small web-app for tracking user's stress level.
+Technology: Nodejs + TypeScript with any framework and technologies you like.
+Deliverables: The solution can be deployed to anywhere like Heroku, Netify,GCP or even Firebase.
+```
+## Description
 Users can use the mobile/web app to upload their stress level (0-5) and image (optional). The mobile/web app uses REST
 API to upload it. Every uploaded images should be resized for more suitable to display on mobile/web. The mobile/web app
 also has a feed that shows all stress level tracked by the user with associated image.
 
 **Task**: Build the API described above. Write unit/e2e tests for each components.
+
 - [1. Infrastructure](#1-infrastructure)
   * [AWS Diagrams](#aws-diagrams)
   * [Jenkins Server](#jenkins-server)
+    + [Jenkins pipeline for Prerequisite resources](#jenkins-pipeline-for-prerequisite-resources)
+    + [Jenkins pipeline for Application](#jenkins-pipeline-for-application)
   * [Database Diagram](#database-diagram)
 - [2. Development](#2-development)
   * [API Endpoint](#api-endpoint)
@@ -16,23 +27,33 @@ also has a feed that shows all stress level tracked by the user with associated 
   * [Repository Folder Structure](#repository-folder-structure)
     + [Infrastructure Repo](#infrastructure-repo)
     + [API Stress Tracking Repo](#api-stress-tracking-repo)
-  * [3. Deployment process](#3-deployment-process)
-    + [Jenkins pipeline for Prerequisite resources](#jenkins-pipeline-for-prerequisite-resources)
-    + [Jenkins pipeline for Dockerfile](#jenkins-pipeline-for-dockerfile)
 
 # 1. Infrastructure
 
 ## AWS Diagrams
+This requirements to create and deploy new application to tracking user's stress level. So I'm decided to use AWS Elastic Beantalk to deploy and deliveriles our application.AWS Elastic Beanstalk enables you to manage all of the resources that run your application also including Load Balancer, Autoscaling and Database connection support.
+
+Use an Amazon Relational Database Service (Amazon RDS) DB instance to store `tracking` and `user` data gathered and modified by application. The database can be attached to your environment, created and managed externally. Elastic Beanstalk provides connection information for attached DB instances in environment properties
+
+We will save image to S3 Bucket, and save image metadata in `Tracking` table following `imageBucket` and `imagePath`.
+
 ![aws_infras.png](Image/aws_infras.png)
 
 ## Jenkins Server
 
 `On-premise or Virtural machine on Cloud`
+### Jenkins pipeline for Prerequisite resources
+Before start deploy and deliveries our application to Cloud environment, we need to deploy some prerequisite resources including: VPC, S3, RDS - AuroraDB, ECR
 
-## Database Diagram
-`
-  User 
-`
+![prerequisite_resources_cicd.png](Image/prerequisite_resources_cicd.png)
+
+### Jenkins pipeline for Application
+The application will deploy to Cloud Providers following stages on this pipeline:
+![jenkins_service_cicd.png](Image/jenkins_service_cicd.png)
+
+## Database Tables
+
+- User
 
 | Parameter | Type     | Description |
 |:----------|:---------|:------------|
@@ -40,9 +61,7 @@ also has a feed that shows all stress level tracked by the user with associated 
 | `email`   | `string` | User email  |
 
 
-`
-Tracking
-`
+- Tracking
 
 | Parameter     | Type       | Description                                 |
 |:--------------|:-----------|:--------------------------------------------|
@@ -123,9 +142,5 @@ Tracking
 | properties/uat_params.json         | uat environment  infrastructure properties                                                                                                            |
 | properties/prod_params.json        | prod environment infrastructure  properties                                                                                                           |
 
-## 3. Deployment process
 
-### Jenkins pipeline for Prerequisite resources
-![prerequisite_resources_cicd.png](Image/prerequisite_resources_cicd.png)
-### Jenkins pipeline for Dockerfile
-![jenkins_service_cicd.png](Image/jenkins_service_cicd.png)
+`Diagrams URL: https://drive.google.com/file/d/1nSHpk3z1ZR68G46OJ4MI6v_UZKJPmzg4/view?usp=sharing`
